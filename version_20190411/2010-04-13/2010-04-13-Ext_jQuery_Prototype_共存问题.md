@@ -1,8 +1,0 @@
-#Ext jQuery Prototype 共存问题
-###发表时间：2010-04-13
-###分类：
-###iteye原始地址：<a href="https://kanpiaoxue.iteye.com/admin/blogs/642921" target="_blank">https://kanpiaoxue.iteye.com/admin/blogs/642921</a>
-
----
-
-<p>&nbsp;&nbsp;&nbsp;[注意引入js的顺序&nbsp;]<br>&nbsp;&nbsp;&nbsp;<span style="background-color: #ff6600;">原来：</span><br>&nbsp;&nbsp;&nbsp;&nbsp;<span style="background-color: #ffffff;">&lt;script type="text/javascript"&nbsp;src="&lt;%=basePath%&gt;js/ext2/adapter/ext/ext-base.js"&gt;&lt;/script&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;script type="text/javascript" src="&lt;%=basePath%&gt;js/ext2/ext-all-debug.js"&gt;&lt;/script&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;script type="text/javascript" src="&lt;%=basePath%&gt;js/ext2/source/locale/ext-lang-zh_CN.js"&gt;&lt;/script&gt;<br></span>&nbsp;&nbsp;&nbsp;<span style="background-color: #ff6600;">引入其他类库：<br></span>&nbsp;&nbsp;&nbsp;&nbsp;<span style="background-color: #ffffff;">&lt;script type="text/javascript" src="&lt;%=basePath %&gt;js/ext2/adapter/jquery/jquery.js"&gt;&lt;/script&gt;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;script type="text/javascript" src="&lt;%=basePath%&gt;js/ext2/adapter/jquery/ext-jquery-adapter.js"&gt;&lt;/script&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;script type="text/javascript" src="&lt;%=basePath%&gt;js/ext2/ext-all-debug.js"&gt;&lt;/script&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;script type="text/javascript" src="&lt;%=basePath%&gt;js/ext2/source/locale/ext-lang-zh_CN.js"&gt;&lt;/script&gt;&nbsp;</span></p>
