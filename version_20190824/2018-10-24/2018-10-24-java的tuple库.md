@@ -12,6 +12,7 @@
  <p style="line-height: 1.3em; font-size: 13px; font-family: Verdana, Helvetica, Arial, sans-serif;">A tuple is just a sequence of objects that do not necessarily relate to each other in any way. For example:&nbsp;<tt>[23, "Saturn", java.sql.Connection@li734s]</tt>&nbsp;can be considered a tuple of three elements (a&nbsp;<em>triplet</em>) containing an Integer, a String, and a JDBC Connection object. As simple as that.</p> 
  <p style="line-height: 1.3em; font-size: 13px; font-family: Verdana, Helvetica, Arial, sans-serif;">&nbsp;</p> 
  <p>地址：&nbsp;<a href="https://www.javatuples.org/">https://www.javatuples.org/</a></p> 
+ <p>样例参考：&nbsp;<a href="https://www.baeldung.com/java-tuples">https://www.baeldung.com/java-tuples</a></p> 
  <p>&nbsp;</p> 
  <pre name="code" class="java">&lt;!-- <a href="https://mvnrepository.com/artifact/org.javatuples/javatuples">https://mvnrepository.com/artifact/org.javatuples/javatuples</a> --&gt;
 &lt;dependency&gt;

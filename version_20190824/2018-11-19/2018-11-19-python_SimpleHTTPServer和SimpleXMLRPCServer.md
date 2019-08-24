@@ -9,4 +9,8 @@
  <p>&nbsp;</p> 
  <p>python有2个非常有用的内置服务器：</p> 
  <p>SimpleHTTPServer和SimpleXMLRPCServer</p> 
+ <p>&nbsp;</p> 
+ <p>指定端口：</p> 
+ <pre name="code" class="java">python -m SimpleHTTPServer 8000</pre> 
+ <p>&nbsp;</p> 
 </div>

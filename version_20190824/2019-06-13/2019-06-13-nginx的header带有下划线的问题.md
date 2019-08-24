@@ -1,5 +1,5 @@
 #nginx的header带有下划线的问题
-###发表时间：2019-06-14
+###发表时间：2019-06-13
 ###分类：nginx,经验
 ###iteye原始地址：<a href="https://kanpiaoxue.iteye.com/admin/blogs/2441836" target="_blank">https://kanpiaoxue.iteye.com/admin/blogs/2441836</a>
 
