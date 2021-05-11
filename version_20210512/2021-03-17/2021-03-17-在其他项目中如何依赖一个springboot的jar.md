@@ -1,0 +1,46 @@
+#在其他项目中如何依赖一个springboot的jar？
+###发表时间：2021-03-17
+###分类：springboot,Spring,java,经验
+###iteye原始地址：<a href="https://kanpiaoxue.iteye.com/admin/blogs/2519746" target="_blank">https://kanpiaoxue.iteye.com/admin/blogs/2519746</a>
+
+---
+
+<div class="iteye-blog-content-contain" style="font-size: 14px;"> 
+ <p>&nbsp;</p> 
+ <p>资料：How to add a dependency to a Spring Boot Jar in another project?</p> 
+ <p>地址：&nbsp;<a href="https://stackoverflow.com/questions/40089443/how-to-add-a-dependency-to-a-spring-boot-jar-in-another-project">https://stackoverflow.com/questions/40089443/how-to-add-a-dependency-to-a-spring-boot-jar-in-another-project</a></p> 
+ <p>&nbsp;</p> 
+ <p>原文：</p> 
+ <p>&nbsp;</p> 
+ <div class="s-prose js-post-body" style=""> 
+  <p style="">By default, Spring Boot repackages your JAR into an executable JAR, and it does that by putting all of your classes inside&nbsp;<code style="">BOOT-INF/classes</code>, and all of the dependent libraries inside&nbsp;<code style="">BOOT-INF/lib</code>. The consequence of creating this fat JAR is that you can no longer use it as a dependency for other projects.</p> 
+  <p style="">From&nbsp;<a style="" href="http://docs.spring.io/spring-boot/docs/1.4.1.RELEASE/maven-plugin/examples/repackage-classifier.html" rel="noreferrer">Custom repackage classifier</a>:</p> 
+  <blockquote style=""> 
+   <p style="">By default, the&nbsp;<code style="">repackage</code>&nbsp;goal will replace the original artifact with the repackaged one. That's a sane behaviour for modules that represent an app but if your module is used as a dependency of another module, you need to provide a classifier for the repackaged one.</p> 
+   <p style="border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; line-height: inherit; font-family: inherit; vertical-align: baseline; clear: both;">The reason for that is that application classes are packaged in&nbsp;<code style="">BOOT-INF/classes</code>&nbsp;so that the dependent module cannot load a repackaged jar's classes.</p> 
+  </blockquote> 
+  <p style="">If you want to keep the original main artifact in order to use it as a dependency, you can add a&nbsp;<a style="" href="http://docs.spring.io/spring-boot/docs/1.4.1.RELEASE/maven-plugin/repackage-mojo.html#classifier" rel="noreferrer"><code style="">classifier</code></a>&nbsp;in the&nbsp;<code style="">repackage</code>&nbsp;goal configuration:</p> 
+  <pre class="lang-xml s-code-block hljs"><code style="margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; line-height: inherit; font-family: inherit; font-size: 13px; vertical-align: baseline; background-color: transparent; white-space: inherit;"><span class="hljs-tag" style="margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; line-height: inherit; font-family: inherit; vertical-align: baseline;">&lt;<span class="hljs-name" style="">plugin</span>&gt;</span>
+  <span class="hljs-tag" style="margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; line-height: inherit; font-family: inherit; vertical-align: baseline;">&lt;<span class="hljs-name" style="">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag" style="margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; line-height: inherit; font-family: inherit; vertical-align: baseline;">&lt;/<span class="hljs-name" style="">groupId</span>&gt;</span>
+  <span class="hljs-tag" style="margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; line-height: inherit; font-family: inherit; vertical-align: baseline;">&lt;<span class="hljs-name" style="">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="hljs-tag" style="margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; line-height: inherit; font-family: inherit; vertical-align: baseline;">&lt;/<span class="hljs-name" style="">artifactId</span>&gt;</span>
+  <span class="hljs-tag" style="margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; line-height: inherit; font-family: inherit; vertical-align: baseline;">&lt;<span class="hljs-name" style="">version</span>&gt;</span>1.4.1.RELEASE<span class="hljs-tag" style="margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; line-height: inherit; font-family: inherit; vertical-align: baseline;">&lt;/<span class="hljs-name" style="">version</span>&gt;</span>
+  <span class="hljs-tag" style="margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; line-height: inherit; font-family: inherit; vertical-align: baseline;">&lt;<span class="hljs-name" style="">executions</span>&gt;</span>
+    <span class="hljs-tag" style="margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; line-height: inherit; font-family: inherit; vertical-align: baseline;">&lt;<span class="hljs-name" style="">execution</span>&gt;</span>
+      <span class="hljs-tag" style="margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; line-height: inherit; font-family: inherit; vertical-align: baseline;">&lt;<span class="hljs-name" style="">goals</span>&gt;</span>
+        <span class="hljs-tag" style="margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; line-height: inherit; font-family: inherit; vertical-align: baseline;">&lt;<span class="hljs-name" style="">goal</span>&gt;</span>repackage<span class="hljs-tag" style="margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; line-height: inherit; font-family: inherit; vertical-align: baseline;">&lt;/<span class="hljs-name" style="">goal</span>&gt;</span>
+      <span class="hljs-tag" style="margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; line-height: inherit; font-family: inherit; vertical-align: baseline;">&lt;/<span class="hljs-name" style="">goals</span>&gt;</span>
+      <span class="hljs-tag" style="margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; line-height: inherit; font-family: inherit; vertical-align: baseline;">&lt;<span class="hljs-name" style="">configuration</span>&gt;</span>
+        <span class="hljs-tag" style="margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; line-height: inherit; font-family: inherit; vertical-align: baseline;">&lt;<span class="hljs-name" style="">classifier</span>&gt;</span>exec<span class="hljs-tag" style="margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; line-height: inherit; font-family: inherit; vertical-align: baseline;">&lt;/<span class="hljs-name" style="">classifier</span>&gt;</span>
+      <span class="hljs-tag" style="margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; line-height: inherit; font-family: inherit; vertical-align: baseline;">&lt;/<span class="hljs-name" style="">configuration</span>&gt;</span>
+    <span class="hljs-tag" style="margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; line-height: inherit; font-family: inherit; vertical-align: baseline;">&lt;/<span class="hljs-name" style="">execution</span>&gt;</span>
+  <span class="hljs-tag" style="margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; line-height: inherit; font-family: inherit; vertical-align: baseline;">&lt;/<span class="hljs-name" style="">executions</span>&gt;</span>
+<span class="hljs-tag" style="margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; line-height: inherit; font-family: inherit; vertical-align: baseline;">&lt;/<span class="hljs-name" style="">plugin</span>&gt;</span>
+</code></pre> 
+  <p style="border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; line-height: inherit; font-family: inherit; vertical-align: baseline; clear: both;">With this configuration, the Spring Boot Maven Plugin will create 2 JARs: the main one will be the same as a usual Maven project, while the second one will have the classifier appended and be the executable JAR.</p> 
+ </div> 
+ <div class="mt24" style="margin-top: 24px !important; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; line-height: inherit; font-family: inherit; font-size: 13px; vertical-align: baseline;">
+  &nbsp;
+ </div> 
+ <p>&nbsp;</p> 
+ <p>&nbsp;</p> 
+</div>
